@@ -8,22 +8,22 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Etudiant  implements Serializable {
+public class Etudiant implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEtudiant;
+    private Long idEtudiant;
     private String nomEt;
     private String prenomEt;
-    private int cin;
+    private int CIN;
     private String ecole;
     @Temporal(TemporalType.DATE)
     private Date dateNaissance;
-
-
+    @ManyToMany(mappedBy="etudiants", cascade = CascadeType.ALL)
+    private Set<Reservation> reservations;
 }

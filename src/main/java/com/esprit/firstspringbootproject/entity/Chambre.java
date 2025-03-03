@@ -7,18 +7,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Chambre  implements Serializable {
-
+public class Chambre implements Serializable {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private int idChambre;
+        private Long idChambre;
         private int numeroChambre;
-        @Enumerated(EnumType.STRING)
-        private TypeChambre TypeC;
+        private TypeChambre typeC;
+        @ManyToOne
+        Bloc bloc;
+        @OneToMany(cascade = CascadeType.ALL)
+        private Set<Reservation> reservations;
 }

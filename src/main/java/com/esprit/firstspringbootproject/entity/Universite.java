@@ -1,25 +1,24 @@
 package com.esprit.firstspringbootproject.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Universite  implements Serializable {
+public class Universite implements Serializable {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private int idUniversite;
+        private Long idUniversite;
         private String nomUniversite;
-        private String adress;
+        private String adrese;
+        @OneToOne
+        private Foyer foyer;
+
 }
